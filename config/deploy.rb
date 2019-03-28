@@ -37,23 +37,15 @@ append :linked_dirs, "node_modules"
 # set :keep_releases, 5
 
 # Uncomment the following to require manually verifying the host key before first deploy.
-set :ssh_options, verify_host_key: :secure, forward_agent: true
+set :ssh_options, verify_host_key: :secure
 
 set :nvm_type, :user
-set :nvm_node, 'v8.11.3'
-set :nvm_map_bins, %w[node npm yarn]
+set :nvm_node, 'v8.11.1'
+set :nvm_map_bins, %w[node npm]
 
-set :yarn_flags, %w[--silent --no-progress]
-
-namespace :deploy do
-
-  task :yarn_deploy do
-    on roles fetch(:yarn_roles) do
-      within fetch(:yarn_target_path, release_path) do
-        execute fetch(:yarn_bin), 'build'
-      end
-    end
+task :npm_build do
+  on roles(:web) do
+    execute("cd #{release_path} && npm install && npm run build")
   end
-
-  before "symlink:release", :yarn_deploy
 end
+after "yarn:install", "npm_build"

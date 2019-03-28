@@ -5,7 +5,7 @@
 
 # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
-server "intstat.cf", user: "deploy", roles: []
+server "instat.cf", user: "deploy", roles: []
 set :deploy_to, '/home/deploy/www/lina-fidem-landing/production'
 set :branch,    'master'
 

@@ -40,12 +40,12 @@ append :linked_dirs, "node_modules"
 set :ssh_options, verify_host_key: :secure, forward_agent: true
 
 set :nvm_type, :user
-set :nvm_node, 'v8.11.1'
+set :nvm_node, 'v8.11.3'
 set :nvm_map_bins, %w[node npm yarn]
 
 set :yarn_flags, %w[--silent --no-progress]
 
-namesapce :deploy do
+namespace :deploy do
 
   task :yarn_deploy do
     on roles fetch(:yarn_roles) do
@@ -55,5 +55,5 @@ namesapce :deploy do
     end
   end
 
-  before "simylink:release", :yarn_deploy
+  before "symlink:release", :yarn_deploy
 end

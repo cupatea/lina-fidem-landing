@@ -1,7 +1,6 @@
 @import "https://fonts.googleapis.com/css?family=Rajdhani";
-body {
+* {
     font-family: "Rajdhani", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: #000000;
 }
 
 .ReactCodeMirror .CodeMirror {
